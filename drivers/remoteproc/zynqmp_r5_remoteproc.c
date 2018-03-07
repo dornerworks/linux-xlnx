@@ -592,6 +592,9 @@ static int zynqmp_r5_remoteproc_probe(struct platform_device *pdev)
 		goto rproc_fault;
 	}
 
+	/* Inherit the dma_mask */
+	rproc->dev.dma_mask = pdev->dev.dma_mask;
+
 	/* Get the RPU power domain id */
 	tmp_node = of_parse_phandle(pdev->dev.of_node, "pd-handle", 0);
 	if (tmp_node) {
